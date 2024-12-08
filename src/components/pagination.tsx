@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const Pagination: React.FC<Props> = ({ className }) => {
-  const { setPage } = useFilterStore((state) => state);
+  const { page, setPage } = useFilterStore((state) => state);
 
   const { data } = useQuery<ProductPagination>({
     queryKey: ["data"],
@@ -24,12 +24,19 @@ export const Pagination: React.FC<Props> = ({ className }) => {
 
   return (
     <div
-      className={cn("flex items-center my-6 relative self-center", className)}
+      className={cn(
+        total_pages === 1
+          ? "hidden"
+          : "flex items-center my-6 relative self-center",
+        className
+      )}
     >
       <div className="flex items-center gap-4">
         {arr.map((item) => (
           <div
-            className="border px-4 py-2 rounded-xl cursor-pointer hover:bg-slate-300 transition-all font-bold"
+            className={`border px-4 py-2 rounded-xl cursor-pointer hover:bg-slate-300 transition-all font-bold ${
+              page === item ? "bg-slate-300" : ""
+            }`}
             key={item}
             onClick={() => setPage(item)}
           >
