@@ -19,7 +19,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/products/:id" element={<ProductItem />} />
         <Route path="*" element={<NotFound />} />
-        <Route path="/create-product" element={<CreateProduct />} />
+        <Route path="*/create-product" element={<CreateProduct />} />
       </Routes>
     </>
   );
